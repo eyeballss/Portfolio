@@ -4,10 +4,27 @@
     android:layout_height="match_parent"
     tools:context="me.blog.eyeballs.davidsprofile.EmailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="email" />
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/sendWithOtherMailAppButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="#1E88E5"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="send with other Mail app"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
