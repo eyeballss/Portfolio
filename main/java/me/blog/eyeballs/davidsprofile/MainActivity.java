@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initNavigationView();
+    }
+
+    private void initNavigationView(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .load("http://postfiles8.naver.net/MjAxNzA4MDZfMyAg/MDAxNTAyMDIxNjc5ODQ5.HfsX3lvpNGOhMkpy2nSo6tgkXsfitXdx9sO0KrMRf8Ug.cBA3LprM3FQDEIuPsvA-FpYyOe9S06DHXr229ZQolPog.PNG.eyeballss/%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C.png?type=w2")
                 .error(R.mipmap.ic_launcher)
                 .into(facePic);
+
+
+        replaceFragment(new HomeFragment());
 
     }
 
@@ -89,27 +97,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             // Handle the camera action
             fragment = new ProfileFragment();
             title="Profile";
+        }  else if (id == R.id.nav_home) {
+            fragment = new HomeFragment();
+            title="Home";
         } else if (id == R.id.nav_gallery) {
             fragment = new GalleryFragment();
             title="Gallery";
         } else if (id == R.id.nav_projects) {
             fragment = new ProjectsFragment();
             title="Projects";
-
         } else if (id == R.id.nav_activities) {
             fragment = new ActivitiesFragment();
             title="Activities";
-
         } else if (id == R.id.nav_send_email) {
             fragment = new EmailFragment();
             title="Email";
         }
 
         if (fragment != null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content_fragment_layout, fragment);
-            fragmentTransaction.commit();
-
+            replaceFragment(fragment);
         }
 
         if(getSupportActionBar()!=null){
@@ -119,5 +125,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void replaceFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content_fragment_layout, fragment);
+        fragmentTransaction.commit();
     }
 }
